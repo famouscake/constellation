@@ -9,13 +9,13 @@ class ConvexHullAlgorithm
 {
 
 public:
-	std::vector<Point*> InputPoints;
-	std::vector<Point*> OutputPoints;
+	std::vector<Point> InputPoints;
+	std::vector<Point> OutputPoints;
 	static int maxThreads;
 
-	std::vector<Point*> Start();
+	std::vector<Point> Start();
 	bool sanityCheck();
-	ConvexHullAlgorithm(std::vector<Point*>, int, int);
+	ConvexHullAlgorithm(std::vector<Point>, int, int);
 
 private:
 

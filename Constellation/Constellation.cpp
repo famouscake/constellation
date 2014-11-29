@@ -35,7 +35,7 @@ void printB(int **B)
 int _tmain(int argc, _TCHAR* argv[])
 {
 
-	vector<vector<Point>> A = CImgWrapper::readFile("test1.bmp");//].printColor();
+	vector<vector<Point>> A = CImgWrapper::readFile("stars1.bmp");//].printColor();
 
 	//A[242][137].printColor();
 
@@ -63,10 +63,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 
-	//printB(B);
-	
-	//vector<Point> C();
-	std::vector<Point*> stars;
+
+	std::vector<Point> stars;
 
 	int z = 2;
 
@@ -74,7 +72,7 @@ int _tmain(int argc, _TCHAR* argv[])
 		for (int j = 0; j < M; j++) {
 			if (B[i][j] == 1) {
 				DFS_Visit(i, j, z);
-				Point *a = new Point(A[i][j].x, A[i][j].y, A[i][j].r, A[i][j].g, A[i][j].b, z-2);
+				Point a = Point(A[i][j].x, A[i][j].y, A[i][j].r, A[i][j].g, A[i][j].b);
 				stars.push_back(a);
 				z++;
 			}
@@ -83,18 +81,13 @@ int _tmain(int argc, _TCHAR* argv[])
 
 
 	ConvexHullAlgorithm::maxThreads = std::thread::hardware_concurrency();
-	sort(stars.begin(), stars.end(), [](Point *a, Point *b){ return a->x < b->x; });
+	sort(stars.begin(), stars.end(), [](const Point &a,const Point &b){ return a.x < b.x; });
 
 	cout << endl;
-	for (Point *x : stars){
-		cout << (*x).x << ", " << (*x).y << " " << x->index << endl;
+	for (Point x : stars){
+		cout << (x).x << ", " << (x).y << endl;// " " << x->index << endl;
 		//(*x).printColor();
-		cout << endl;
-	}
-
-	int i = 0;
-	for (Point *x : stars) {
-		//(*x).index = i++;
+		//cout << endl;
 	}
 
 	ConvexHullAlgorithm charlie(stars, 0, stars.size()-1);
@@ -102,8 +95,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	t.join();
 
 
-	for (Point *x : charlie.OutputPoints) {
-		cout << (*x).x << ", " << (*x).y << endl;
+	cout << endl;
+
+	for (Point x : charlie.OutputPoints) {
+		cout << ((x).x) << ", " << -((x).y) << endl;
 	}
 
 

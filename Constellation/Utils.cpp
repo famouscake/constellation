@@ -21,7 +21,7 @@ std::vector<Point*> Utils::generatePoints(int max, int n)
 		double x = static_cast<double>((rand() / (RAND_MAX * 1.0)) * max);
 		double y = static_cast<double>((rand() / (RAND_MAX * 1.0)) * max);
 
-		v.push_back(new Point(x, y, 0.0, 0.0, 0.0, n));
+		v.push_back(new Point(x, y, 0.0, 0.0, 0.0));
 
 		n--;
 	}

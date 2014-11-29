@@ -4,7 +4,7 @@
 std::atomic<int> ConvexHullAlgorithm::numThreads{ 0 };
 int ConvexHullAlgorithm::maxThreads = 4;
 
-ConvexHullAlgorithm::ConvexHullAlgorithm(std::vector<Point*> InputPoints, int leftLimit, int rightLimit)
+ConvexHullAlgorithm::ConvexHullAlgorithm(std::vector<Point> InputPoints, int leftLimit, int rightLimit)
 {
 	this->InputPoints = InputPoints;
 	this->leftLimit = leftLimit;
@@ -50,17 +50,17 @@ bool ConvexHullAlgorithm::sanityCheck()
 }
 
 
-std::vector<Point*> ConvexHullAlgorithm::Start()
+std::vector<Point> ConvexHullAlgorithm::Start()
 {
 	this->omega = this->computeConvexHull(this->leftLimit, this->rightLimit);
 
 	HullPoint *x = this->omega;
 
-	std::vector<Point*> temp;
+	std::vector<Point> temp;
 
 	do
 	{
-		temp.push_back(this->InputPoints[x->point.index]);
+		temp.push_back(x->point);
 		x = x->next;
 	} while (x != this->omega);
 
@@ -175,7 +175,7 @@ HullPoint* ConvexHullAlgorithm::computeConvexHull(int l, int r)
 {
 	if (l == r)
 	{
-		HullPoint *a = new HullPoint(*(this->InputPoints[l]));
+		HullPoint *a = new HullPoint((this->InputPoints[l]));
 		a->next = a; a->prev = a;
 		return a;
 	}
@@ -183,8 +183,8 @@ HullPoint* ConvexHullAlgorithm::computeConvexHull(int l, int r)
 	if (l + 1 == r)
 	{
 		HullPoint *a, *b;
-		a = new HullPoint(*(this->InputPoints[l]));
-		b = new HullPoint(*(this->InputPoints[r]));
+		a = new HullPoint((this->InputPoints[l]));
+		b = new HullPoint((this->InputPoints[r]));
 
 		a->next = b; a->prev = b;
 		b->next = a; b->prev = a;
@@ -218,6 +218,5 @@ HullPoint* ConvexHullAlgorithm::computeConvexHull(int l, int r)
 	}
 
 
-	
 	return combine(A, B);
 }

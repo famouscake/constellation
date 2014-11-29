@@ -5,14 +5,13 @@
 class Point
 {
 public:
-	Point(double, double, double, double, double, int);
+	Point(double, double, double, double, double);
 
 	double x, y;
 	double r, g, b, a;
 
 	void printColor();
 
-	int index;
 	~Point();
 };
 

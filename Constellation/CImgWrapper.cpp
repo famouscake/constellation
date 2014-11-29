@@ -28,7 +28,7 @@ std::vector<std::vector<Point>> CImgWrapper::readFile(char *filename)
 			double *green = image.data(j, i, 0, 1);
 			double *blue = image.data(j, i, 0, 2);
 
-			A.back().push_back(Point(j, i, *red, *green, *blue, i*j + j));
+			A.back().push_back(Point(j, i, *red, *green, *blue));
 		}
 	}
 

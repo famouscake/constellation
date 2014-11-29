@@ -1,14 +1,13 @@
 #include "stdafx.h"
 #include "Point.h"
 
-Point::Point(double x, double y, double r, double g, double b, int index)
+Point::Point(double x, double y, double r, double g, double b)
 {
 	this->x = x;
 	this->y = y;
 	this->r = r;
 	this->g = g;
 	this->b = b;
-	this->index = index;
 }
 
 Point::~Point()
