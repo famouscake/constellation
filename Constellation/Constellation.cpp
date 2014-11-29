@@ -74,24 +74,30 @@ int _tmain(int argc, _TCHAR* argv[])
 		for (int j = 0; j < M; j++) {
 			if (B[i][j] == 1) {
 				DFS_Visit(i, j, z);
-				Point *a = new Point(A[i][j].x, A[i][j].y, A[i][j].r, A[i][j].g, A[i][j].b, z-1);
+				Point *a = new Point(A[i][j].x, A[i][j].y, A[i][j].r, A[i][j].g, A[i][j].b, z-2);
 				stars.push_back(a);
 				z++;
 			}
 		}
 	}
 
-	cout << endl;
-	for (Point *x : stars){
-		cout << (*x).x << ", " << (*x).y << " "<< x->index << endl;
-		//(*x).printColor();
-		cout << endl;
-	}
 
 	ConvexHullAlgorithm::maxThreads = std::thread::hardware_concurrency();
 	sort(stars.begin(), stars.end(), [](Point *a, Point *b){ return a->x < b->x; });
 
-	ConvexHullAlgorithm charlie(stars, 0, 5);
+	cout << endl;
+	for (Point *x : stars){
+		cout << (*x).x << ", " << (*x).y << " " << x->index << endl;
+		//(*x).printColor();
+		cout << endl;
+	}
+
+	int i = 0;
+	for (Point *x : stars) {
+		//(*x).index = i++;
+	}
+
+	ConvexHullAlgorithm charlie(stars, 0, stars.size()-1);
 	thread t(&ConvexHullAlgorithm::Start, &charlie);
 	t.join();
 
