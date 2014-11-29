@@ -6,12 +6,90 @@
 using namespace std;
 using namespace cimg_library;
 
+int **B;
+int N, M;
+
+void DFS_Visit(int x, int y, int t ) {
+	B[x][y] = t;
+
+	for (int i = -1; i <= 1 ; i++) {
+		for (int j = -1; j <= 1; j++) {
+			if ((x + i) < N && (x + i) >= 0 && (y + j) < M && (y + j) >= 0 && B[x + i][y + j] == 1) {
+				DFS_Visit(x + i, y + j, t);
+			}
+		}
+	}
+}
+
+void printB(int **B)
+{
+	for (int i = 0; i < N; i++) {
+		cout << endl;
+		for (int j = 0; j < M ;  j++) {
+			cout << B[i][j] << " ";
+		}
+	}
+
+}
+
 int _tmain(int argc, _TCHAR* argv[])
 {
 
 	vector<vector<Point>> A = CImgWrapper::readFile("test1.bmp");//].printColor();
 
-	A[116][66].printColor();
+	//A[242][137].printColor();
+
+
+	N = A.size();
+	M = A.back().size();
+
+
+	cout << N << " " << M;
+
+	B = new int*[N];
+	for (int i = 0; i < N; i++) {
+		B[i] = new int[M];
+	}
+
+
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			if (A[i][j].r > 0) {
+				B[i][j] = 1;// A[i][j].r;
+			}
+			else {
+				B[i][j] = 0;
+			}
+		}
+	}
+
+	//printB(B);
+	
+	//vector<Point> C();
+	std::vector<Point*> stars;
+
+	int z = 2;
+
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < M; j++) {
+			if (B[i][j] == 1) {
+				DFS_Visit(i, j, z);
+				//stars.push_back(A[i][j]);
+				stars.push_back(&(A[i][j]));
+				z++;
+			}
+		}
+	}
+
+	cout << endl;
+	for (Point *x : stars){
+		cout << (*x).x << ", " << (*x).y << endl;
+	}
+
+	ConvexHullAlgorithm::maxThreads = std::thread::hardware_concurrency();
+	ConvexHullAlgorithm charlie(stars, 0, 5);
+	charlie.Start();
+
 
 	std::cout << "Press any key to continue ... ";
 	std::cin.get();

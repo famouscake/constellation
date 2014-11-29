@@ -1,16 +1,6 @@
 #include "stdafx.h"
 #include "ConvexHullAlgorithm.h"
 
-
-ConvexHullAlgorithm::ConvexHullAlgorithm()
-{
-}
-
-
-ConvexHullAlgorithm::~ConvexHullAlgorithm()
-{
-}
-
 std::atomic<int> ConvexHullAlgorithm::numThreads{ 0 };
 int ConvexHullAlgorithm::maxThreads = 4;
 
@@ -228,7 +218,6 @@ HullPoint* ConvexHullAlgorithm::computeConvexHull(int l, int r)
 	}
 
 
-
+	
 	return combine(A, B);
 }
-

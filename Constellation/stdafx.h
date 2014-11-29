@@ -11,6 +11,7 @@
 #include "CImgWrapper.h"
 #include "ConvexHullAlgorithm.h"
 
+#include <Query.h>
 #include <algorithm>
 #include <fstream>
 #include <vector>

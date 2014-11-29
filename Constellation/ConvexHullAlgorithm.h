@@ -7,10 +7,8 @@
 
 class ConvexHullAlgorithm
 {
+
 public:
-	ConvexHullAlgorithm();
-	~ConvexHullAlgorithm();
-	
 	std::vector<Point*> InputPoints;
 	std::vector<Point*> OutputPoints;
 	static int maxThreads;
@@ -20,6 +18,7 @@ public:
 	ConvexHullAlgorithm(std::vector<Point*>, int, int);
 
 private:
+
 	// Algorithm is run in interval [ InputPoints[l], InputPoints[r] ]
 	int leftLimit, rightLimit;
 
@@ -79,6 +78,4 @@ private:
 	* @return A HullPoints* that's any element in the Convex Hull Doubly Linked List.
 	*/
 	HullPoint* computeConvexHull(int l, int r);
-
 };
-
