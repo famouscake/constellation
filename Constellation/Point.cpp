@@ -18,3 +18,8 @@ void Point::printColor()
 {
 	std::cout << "(" << this->r << " , " << this->g << " , " << this->b << ")";
 }
+
+double Point::distance(Point a, Point b)
+{
+	return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y)*(a.y - b.y));
+}

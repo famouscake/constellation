@@ -11,6 +11,7 @@ public:
 	double r, g, b, a;
 
 	void printColor();
+	static double distance(Point , Point);
 
 	~Point();
 };
