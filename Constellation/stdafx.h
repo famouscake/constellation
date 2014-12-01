@@ -6,6 +6,7 @@
 #pragma once
 
 #include "targetver.h"
+#include "Stars.h"
 #include "CImg.h"
 #include "Utils.h"
 #include "CImgWrapper.h"
